@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block styles %}
+	<link rel="stylesheet" type="text/css" href="{% static "assets/plugins/select2/select2_metro.css"  %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "assets/plugins/chosen-bootstrap/chosen/chosen.css" %}" />
+{% endblock styles %}
+
+{% block content %}
+<form action="{% url 'new_customer' %}" method = "POST">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}
+
+{% block plugins %}
+    <script type="text/javascript" src="{% static "assets/plugins/jquery-validation/dist/jquery.validate.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/jquery-validation/dist/additional-methods.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/select2/select2.min.js" %}"></script>
+{% endblock plugins %}
+
+{% block scripts %}
+    <script src="{% static "assets/scripts/app.js" %}"></script>
+	<script src="{% static "assets/scripts/form-wizard.js" %}"></script>
+    	<script>
+		jQuery(document).ready(function() {
+		   // initiate layout and plugins
+		   App.init();
+		   FormWizard.init();
+		});
+	</script>
+{% endblock scripts %}
+

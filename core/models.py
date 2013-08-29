@@ -26,6 +26,8 @@ class Customer(models.Model):
     address_3 = models.CharField(max_length=256, blank=True)
     suburb = models.CharField(max_length=100)
     state = models.CharField(max_length=50)
+    #email = models.CharField(max_length=50, blank=True)
+    #phone = models.CharField(max_length=50, blank=True)
     postcode = models.CharField(max_length=20)
     points = models.IntegerField()
     comments = models.TextField(null=True, blank=True)

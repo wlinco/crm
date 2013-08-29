@@ -38,10 +38,9 @@
 											</tr>
 										</thead>
 										<tbody>
-
                                         {% for customer in customers %}
                                         											<tr>
-                                        <td><a href="#">{{ customer.customer_id }}</a></td>
+                                                                <td><a href="{% url 'customer' customer.customer_id %}">{{ customer.customer_id }}</a></td>
                                             <td class="hidden-phone">{{ customer.first_name }} {{ customer.last_name }}</td>
                                             <td>{{ customer.points }} <span class="label label-warning label-mini">VIP</span></td>
                                             <td><a class="btn mini yellow-stripe" href="#">View</a></td>

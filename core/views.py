@@ -63,6 +63,13 @@ def customer_list(request):
         'customers': customers,
     })
 
+def customer(request,id):
+   customer = Customer.objects.get(customer_id=id)
+   customer_orders = Order.objects.filter(customer_id=id)
+   return render(request, 'customers/customer.html',{
+       'customer': customer,
+       'customer_orders': customer_orders,
+   })
 
 def new_order(request):
     if request.method == 'POST':

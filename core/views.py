@@ -66,9 +66,16 @@ def customer_list(request):
 def customer(request,id):
    customer = Customer.objects.get(customer_id=id)
    customer_orders = Order.objects.filter(customer_id=id)
+   total_orders = len(Order.objects.filter(customer_id=id))
+   customer_total = 0
+   for orders in customer_orders:
+       customer_total += orders.order_total
+
    return render(request, 'customers/customer.html',{
        'customer': customer,
        'customer_orders': customer_orders,
+       'total_orders': total_orders,
+       'customer_total': customer_total,
    })
 
 def new_order(request):

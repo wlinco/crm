@@ -32,4 +32,6 @@ class CustomerForm(ModelForm):
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        #OrderFormSet = inlineformset_factory(Order, ProductInOrder)
+        """OrderFormSet = inlineformset_factory(Order, ProductInOrder)
+        order = Order.objects.get(order_number=1)
+        formset = OrderFormSet(instance=order)"""

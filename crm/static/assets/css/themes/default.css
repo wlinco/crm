@@ -285,3 +285,38 @@ Landscape phone to portrait tablet
     background: #1e1e1e;
   }
 }
+
+.inline-product{
+    min-height:30px;
+    display:block;
+}
+
+.inline-product ul{
+    margin-left:0px;
+}
+
+.inline-product ul li{
+    display:inline-block;
+    float:left;
+
+}
+
+.inline-product ul li input{
+    max-width:80px;
+    margin-left:20px;
+}
+
+
+
+.submission-buttons{
+    margin-top:20px;
+
+}
+
+.order-comments{
+    height:120px;
+}
+
+#id_order_total{
+    display:none;
+}

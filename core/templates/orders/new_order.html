@@ -7,9 +7,11 @@
 
 
 {% block content %}
+
+
 <div class="row-fluid">
 					<div class="span12">
-						<div class="portlet box blue" id="form_wizard_1">
+						<div class="portlet box blue" id="form_wizard_0" style="display:none;">
 							<div class="portlet-title">
 								<div class="caption">
 									<i class="icon-reorder"></i> Add New Order - <span class="step-title">Step 1 of 1</span>
@@ -23,18 +25,102 @@
 							</div>
 
 							<div class="portlet-body form">
-                                <form action="{% url 'new_order' %}" method = "POST">{% csrf_token %}
-                                {{ form.as_p }}
-                                <input type="submit" value="Submit" />
 
-                               </form>
+
+
+                                </div>
+						</div>
+
+
+                        <div class="portlet box blue" id="form_wizard_1">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="icon-reorder"></i> Add New Product - <span class="step-title">Step 1 of 4</span>
+								</div>
+								<div class="tools hidden-phone">
+									<a href="javascript:;" class="collapse"></a>
+									<a href="#portlet-config" data-toggle="modal" class="config"></a>
+									<a href="javascript:;" class="reload"></a>
+									<a href="javascript:;" class="remove"></a>
+								</div>
+							</div>
+
+
+							<div class="portlet-body form">
+
+                            <form action="." method = "POST">{% csrf_token %}
+                                {{product_form.management_form}}
+
+
+
+                                    Search for Customer<br />
+                                    {{ form.customer_id }}
+
+                                <div class="inline-product" style="min-height:13px;">
+
+                                    <ul>
+                                        <li style="width:240px;">Product</li>
+                                        <li style="width:115px;">Quantity</li>
+                                        <li style="width:115px;">Unit Price</li>
+                                        <li style="width:115px;">Subtotal</li>
+                                        </ul>
+                                      </div>
+
+
+                                        {% for field in product_form %}
+                                        <div class="inline-product">
+
+                                    <ul>
+                                        <li class="prod-id">{{ field.product }}</li>
+                                        <li class="prod-qty">{{ field.quantity }}</li>
+                                        <li class="prod-price">{{ field.unit_price }}</li>
+                                        <li class="prod-total">{{ field.total_price }}</li>
+                                        </ul>
+                                      </div>
+
+
+                                        {% endfor %}
+
+                                <div class="submission-buttons">
+                                                                  <input class="btn blue" title='Add another product' type='submit' name='add_product' value='Add Another Product +' style="margin-bottom:15px;font-size: 11px;padding:5px;"/>
+<br />
+                                                                        {{ form.order_total }}
+                                {{ form.comments }}
+<br />
+                                <br />
+
+
+                                <input class="btn green" type="submit" value="Submit" />
+                                    </div>
+                            </form>
+
 							</div>
 						</div>
+
 					</div>
 				</div>
 {% endblock content %}
 
 {% block plugins %}
+    <script type="text/javascript" src="{% static "assets/plugins/ckeditor/ckeditor.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/jquery-tags-input/jquery.tagsinput.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/clockface/js/clockface.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-daterangepicker/date.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-daterangepicker/daterangepicker.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/jquery.input-ip-address-control-1.0.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/plugins/jquery-multi-select/js/jquery.multi-select.js" %}"></script>
+
+
+
     <script type="text/javascript" src="{% static "assets/plugins/jquery-validation/dist/jquery.validate.min.js" %}"></script>
 	<script type="text/javascript" src="{% static "assets/plugins/jquery-validation/dist/additional-methods.min.js" %}"></script>
 	<script type="text/javascript" src="{% static "assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" %}"></script>
@@ -45,12 +131,56 @@
 {% block scripts %}
     <script src="{% static "assets/scripts/app.js" %}"></script>
 	<script src="{% static "assets/scripts/form-wizard.js" %}"></script>
+    <script src="{% static "assets/scripts/form-components.js" %}"></script>
+
     	<script>
 		jQuery(document).ready(function() {
 		   // initiate layout and plugins
 		   App.init();
-		   FormWizard.init();
+           FormComponents.init();
+		   //FormWizard.init();
+
+
+      $("#id_customer_id").select2({
+        width: "250px",
+          placeholder: "Search Customer"
+      });
+
+
+            if ({{ customer_id }} != 0)
+            {
+                console.log("{{ customer_id }}");
+                $("#id_customer_id").select2("val",{{ customer_id }})
+            }
+
+
+            $(".prod-qty input").change(function() {
+                var qty = parseFloat($(this).val());
+                var price = parseFloat($(".prod-price input").val());
+                var total = qty * price;
+              $(".prod-total input").val(total);
+            });
+
+            $(".prod-id select").change(function() {
+                var urlString = "/get_price/" + $(this).val();
+                $.getJSON( urlString, function( data ) {
+                var items = [];
+                $.each( data, function( key, val ) {
+                items.push(val);
+                });
+                $(".prod-price input").val(items[0]);
+
+                });
+
+
+
+
+            });
+
 		});
+
+
+
+
 	</script>
 {% endblock scripts %}
-

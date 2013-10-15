@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea, Select
 from django.forms.models import inlineformset_factory
 
 from core.models import Product
@@ -29,9 +29,21 @@ class CustomerForm(ModelForm):
     class Meta:
         model = Customer
 
+
+OrderFormSet = inlineformset_factory(Order, ProductInOrder,extra=1)
+
+
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        """OrderFormSet = inlineformset_factory(Order, ProductInOrder)
-        order = Order.objects.get(order_number=1)
-        formset = OrderFormSet(instance=order)"""
+
+        fields = ('customer_id','order_total','comments',)
+        widgets = {
+            'customer_id': Select(attrs={'class':'form-control select2me','data-placeholder':'Search Customers'}),
+            'comments': Textarea(attrs={'class':'order-comments','placeholder':'Comments'}),
+            'order_total': TextInput(attrs={'value':'0'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(OrderForm, self).__init__(*args, **kwargs)
+        self.fields['customer_id'].empty_label = 'Search'

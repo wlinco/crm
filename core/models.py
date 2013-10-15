@@ -40,7 +40,6 @@ class Order(models.Model):
     update_at = models.DateTimeField(auto_now_add=True)
     order_number = models.AutoField(primary_key=True)
     customer_id = models.ForeignKey(Customer)
-    products = models.ManyToManyField(Product, through='ProductInOrder')
     order_total = models.DecimalField(max_digits=6, decimal_places=2)
     comments = models.TextField(null=True, blank=True)
 

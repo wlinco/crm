@@ -102,7 +102,7 @@
 															<tbody>
                               {% for order in customer_orders %}
 																<tr>
-                                  <td>{{order.order_total}}</td>
+                                  <td>{{order.order_number}}</td>
                                   <td>{{order.created_at}}</td>
                                   <td class="hidden-phone">{{order.comments}}</td>
                                   <td>${{order.order_total}} <span class="label label-success label-mini">Paid</span></td>

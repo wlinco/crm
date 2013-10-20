@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^new_order/$', 'core.views.new_order', name='new_order'),
     url(r'^orders/$', 'core.views.order_list', name='order_list'),
     url(r'^get_price/(\d{1})$', 'core.views.price_lookup', name='get_price'),
+    url(r'^get_points/(\d{1})$', 'core.views.points_lookup', name='get_points'),
 )

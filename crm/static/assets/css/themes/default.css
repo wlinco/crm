@@ -303,9 +303,13 @@ Landscape phone to portrait tablet
 
 .inline-product ul li input{
     max-width:80px;
-    margin-left:20px;
+    margin-left:5px;
+    margin-right:20px;
 }
 
+.prod-qty{
+    margin-left:20px;
+}
 
 
 .submission-buttons{

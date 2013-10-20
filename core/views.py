@@ -130,4 +130,12 @@ def price_lookup(request,id):
     return HttpResponse(simplejson.dumps(to_json), mimetype='application/json')
 
 
+def points_lookup(request,id):
+    customer = Customer.objects.filter(customer_id=id)
+
+    points = int(customer[0].points)
+    to_json = {
+        "points": points
+    }
+    return HttpResponse(simplejson.dumps(to_json), mimetype='application/json')
 

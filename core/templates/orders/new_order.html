@@ -56,12 +56,18 @@
                                     Search for Customer<br />
                                     {{ form.customer_id }}
 
+                            <div id="customer_points">
+
+
+                            </div>
+
+
                                 <div class="inline-product" style="min-height:13px;">
 
                                     <ul>
-                                        <li style="width:240px;">Product</li>
-                                        <li style="width:115px;">Quantity</li>
-                                        <li style="width:115px;">Unit Price</li>
+                                        <li style="width:248px;">Product</li>
+                                        <li style="width:125px;">Quantity</li>
+                                        <li style="width:125px;">Unit Price</li>
                                         <li style="width:115px;">Subtotal</li>
                                         </ul>
                                       </div>
@@ -73,8 +79,8 @@
                                     <ul>
                                         <li class="prod-id">{{ field.product }}</li>
                                         <li class="prod-qty">{{ field.quantity }}</li>
-                                        <li class="prod-price">{{ field.unit_price }}</li>
-                                        <li class="prod-total">{{ field.total_price }}</li>
+                                        <li class="prod-price">${{ field.unit_price }}</li>
+                                        <li class="prod-total">${{ field.total_price }}</li>
                                         </ul>
                                       </div>
 
@@ -87,6 +93,9 @@
                                                                         {{ form.order_total }}
                                 {{ form.comments }}
 <br />
+                                    <div id="order-total"></div>
+                                    <div id="order-points"></div>
+                                    <div id="order-notification"></div>
                                 <br />
 
 
@@ -141,34 +150,122 @@
 		   //FormWizard.init();
 
 
+            var updatePoints = function(amount){
+                var total = amount / 10;
+                 $("#order-points").html("This order will earn <span>" + parseInt(total).toString() + "</span> points");
+            };
+
+            var updateTotal = function(){
+                var prices = $(".prod-total input");
+                grand_total = 0.0;
+
+
+                prices.each(function(index){
+                    if (parseFloat($(this).val()) > 0){
+                        grand_total += parseFloat($(this).val());
+                        console.log(grand_total);
+                    }
+                });
+
+                if(!isNaN(grand_total)){
+                    $("#id_order_total").val(0);
+                    $("#id_order_total").val(grand_total);
+                    $("#order-total").html("Your order total is $"+grand_total.toFixed(2).toString());
+                    updatePoints(grand_total);
+                }
+
+                var currentPoints = parseInt($("#customer_points span").text());
+                var orderPoints = parseInt($("#order-points span").text());
+                var difference = 25 - (currentPoints + orderPoints);
+                if (!isNaN(difference)){
+                    if (difference > 0){
+                        $("#order-notification").html("" + difference + " more points until discount eligibility.");
+                    } else {
+                        $("#order-notification").html("<span class='apply-discount' style='cursor:pointer; color:white;display:inline-block;padding:5px;background:#4d90fe;'>Click Here</span> use 25 points towards 10% discount");
+                    }
+                }
+
+            };
+
+            updateTotal();
+
+
+
+
       $("#id_customer_id").select2({
         width: "250px",
           placeholder: "Search Customer"
       });
+            var currentPoints = 0;
 
 
-            if ({{ customer_id }} != 0)
+            $("#id_customer_id").change(function() {
+                var currentCustomer = 0;
+               if ($(this).val() != ""){
+                   currentCustomer = $(this).val();
+                var point_count = 0;
+                var items = [];
+                var urlString = "/get_points/" + currentCustomer;
+                $.getJSON( urlString, function( data ) {
+                        $.each( data, function( key, val ) {
+                            items.push(val);
+                            $("#customer_points").html("Current Points: <span>" + items[0]+"</span>");
+                        });
+                });
+
+               }
+                updateTotal();
+            });
+
+
+
+            function getPoints(customer_id){
+                var point_count = 0;
+                var items = [];
+                var urlString = "/get_points/" + customer_id.toString();
+                $.getJSON( urlString, function( data ) {
+                        $.each( data, function( key, val ) {
+                            items.push(val);
+                        });
+                    $("#customer_points").html("Current Points: " + items[0]);
+                });
+
+                console.log("inside point count is " + point_count);
+                return point_count;
+            }
+
+
+            if ( {{ customer_id }} != 0)
             {
-                console.log("{{ customer_id }}");
-                $("#id_customer_id").select2("val",{{ customer_id }})
+                $("#id_customer_id").select2("val",{{ customer_id }});
+                getPoints({{ customer_id }});
             }
 
 
             $(".prod-qty input").change(function() {
                 var current = $(this);
                 var qty = parseFloat($(this).val());
-                var price = parseFloat($(".prod-price input").val());
+                //var price = parseFloat($(".prod-price input").val());
+                var price = parseFloat(current.parent().parent().parent().find($(".prod-price input")).val());
                 var total = qty * price;
-              current.parent().parent().parent().find($(".prod-total input")).val(total);
-
-                var prices = $(".prod-total input");
-                var grand_total = 0.0;
-                for (var i = 0; i < prices.length;i++){
-                    grand_total += parseFloat(prices[i].value)
+                if (!isNaN(total)){
+                    current.parent().parent().parent().find($(".prod-total input")).val(total.toFixed(2));
                 }
 
-                $("#id_order_total").val(grand_total);
+                updateTotal();
 
+                /*var prices = $(".prod-total input");
+                grand_total = 0;
+
+                prices.each(function(index){
+                    grand_total += parseFloat($(this).val());
+                });
+
+                console.log(grand_total);
+
+                $("#id_order_total").val(0);
+                $("#id_order_total").val(grand_total);
+                $("#order-total").html("Your order total is $"+grand_total.toString());*/
 
             });
 
@@ -184,12 +281,23 @@
                         //console.log(current.text());
                         current.parent().parent().parent().find($(".prod-price input")).val(items[0]);
                     });
-                }
 
+                }
 
             });
 
 
+
+            $(".apply-discount").live("click", function(){
+                var currentOrderValue = $("#id_order_total").val();
+                var newOrderValue = $("#id_order_total").val() * 0.9;
+                var remainingPoints = parseInt($("#customer_points span").text()) + parseInt($("#order-points span").text()) - 25;
+                $(".order-comments").val("10% Discount Applied");
+                $("#id_order_total").val(newOrderValue);
+                $("#order-total").html("Your order total is $"+newOrderValue.toFixed(2)+" (10% Discount Applied)<br />");
+                $("#order-points").html("<span>"+remainingPoints+"</span> points remain");
+                $(this).parent().html("");
+            });
 
 
 		});

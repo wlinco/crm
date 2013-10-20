@@ -90,7 +90,7 @@
                                 <br />
 
 
-                                <input class="btn green" type="submit" value="Submit" />
+                                <input id="btn-submit" class="btn green" type="submit" value="Submit" />
                                     </div>
                             </form>
 
@@ -155,27 +155,42 @@
 
 
             $(".prod-qty input").change(function() {
+                var current = $(this);
                 var qty = parseFloat($(this).val());
                 var price = parseFloat($(".prod-price input").val());
                 var total = qty * price;
-              $(".prod-total input").val(total);
+              current.parent().parent().parent().find($(".prod-total input")).val(total);
+
+                var prices = $(".prod-total input");
+                var grand_total = 0.0;
+                for (var i = 0; i < prices.length;i++){
+                    grand_total += parseFloat(prices[i].value)
+                }
+
+                $("#id_order_total").val(grand_total);
+
+
             });
 
             $(".prod-id select").change(function() {
-                var urlString = "/get_price/" + $(this).val();
-                $.getJSON( urlString, function( data ) {
-                var items = [];
-                $.each( data, function( key, val ) {
-                items.push(val);
-                });
-                $(".prod-price input").val(items[0]);
-
-                });
-
-
+                var current = $(this);
+                if ($(this).val() !=""){
+                    var urlString = "/get_price/" + $(this).val();
+                    $.getJSON( urlString, function( data ) {
+                    var items = [];
+                    $.each( data, function( key, val ) {
+                    items.push(val);
+                    });
+                        //console.log(current.text());
+                        current.parent().parent().parent().find($(".prod-price input")).val(items[0]);
+                    });
+                }
 
 
             });
+
+
+
 
 		});
 

@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a87603c-777f-441d-b12e-9d132a9fe30d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm.db" afterPath="$PROJECT_DIR$/crm.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/customers/customer.html" afterPath="$PROJECT_DIR$/core/templates/customers/customer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/static/assets/css/themes/default.css" afterPath="$PROJECT_DIR$/crm/static/assets/css/themes/default.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/orders/new_order.html" afterPath="$PROJECT_DIR$/core/templates/orders/new_order.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/urls.py" afterPath="$PROJECT_DIR$/core/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/views.py" afterPath="$PROJECT_DIR$/core/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="crm.iws" />
@@ -84,7 +78,7 @@
       <file leaf-file-name="new_order.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/templates/orders/new_order.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="293" column="124" selection-start="12529" selection-end="12529" vertical-scroll-proportion="0.76653695" vertical-offset="3410" max-vertical-offset="4725">
+            <state line="294" column="65" selection-start="12601" selection-end="12601" vertical-scroll-proportion="0.48360655" vertical-offset="4115" max-vertical-offset="4725">
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -179,7 +173,7 @@
     <option name="x" value="4" />
     <option name="y" value="22" />
     <option name="width" value="1451" />
-    <option name="height" value="1576" />
+    <option name="height" value="878" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -525,15 +519,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1451" height="1576" extended-state="6" />
+    <frame x="4" y="22" width="1451" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0729237" sideWeight="0.4995169" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13793103" sideWeight="0.4995169" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.60686016" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964029" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26464507" sideWeight="0.9270763" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15851137" sideWeight="0.86206895" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39973614" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998455" sideWeight="0.5004831" order="7" side_tool="true" content_ui="tabs" />
@@ -666,7 +660,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/orders/new_order.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="293" column="124" selection-start="12529" selection-end="12529" vertical-scroll-proportion="0.76653695" vertical-offset="3410" max-vertical-offset="4725">
+        <state line="294" column="65" selection-start="12601" selection-end="12601" vertical-scroll-proportion="0.48360655" vertical-offset="4115" max-vertical-offset="4725">
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />

@@ -33,7 +33,7 @@
 											<tr>
 												<th><i class="icon-briefcase"></i> Product</th>
 												<th class="hidden-phone"><i class="icon-question-sign"></i> Description</th>
-												<th><i class="icon-bookmark"></i> Sale Price</th>
+												<th><i class="icon-bookmark"></i> Retail Price</th>
 												<th></th>
 											</tr>
 										</thead>
@@ -43,8 +43,8 @@
                                         											<tr>
                                         <td><a href="#">{{ product.name }}</a></td>
                                             <td class="hidden-phone">{{ product.description }}</td>
-                                            <td>${{ product.sale_price }} <span class="label label-success label-mini">In Stock</span></td>
-                                            <td><a class="btn mini green-stripe" href="#">View</a></td>
+                                            <td>${{ product.sale_price }} <!--<span class="label label-success label-mini">In Stock</span>--></td>
+                                            <td><!--<a class="btn mini green-stripe" href="#">View</a>-->&nbsp;</td>
                                         </tr>
 
                                         {% endfor %}

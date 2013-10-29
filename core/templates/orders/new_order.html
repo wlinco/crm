@@ -293,7 +293,7 @@
                 var newOrderValue = $("#id_order_total").val() * 0.9;
                 var remainingPoints = parseInt($("#customer_points span").text()) + parseInt($("#order-points span").text()) - 25;
                 $(".order-comments").val("10% Discount Applied");
-                $("#id_order_total").val(newOrderValue);
+                /*$("#id_order_total").val(newOrderValue);*/
                 $("#order-total").html("Your order total is $"+newOrderValue.toFixed(2)+" (10% Discount Applied)<br />");
                 $("#order-points").html("<span>"+remainingPoints+"</span> points remain");
                 $(this).parent().html("");

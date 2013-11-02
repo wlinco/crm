@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a87603c-777f-441d-b12e-9d132a9fe30d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm.db" afterPath="$PROJECT_DIR$/crm.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/templates/base.html" afterPath="$PROJECT_DIR$/crm/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/orders/new_order.html" afterPath="$PROJECT_DIR$/core/templates/orders/new_order.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/products/product_list.html" afterPath="$PROJECT_DIR$/core/templates/products/product_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="crm.iws" />
@@ -64,7 +60,7 @@
       <file leaf-file-name="new_order.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/templates/orders/new_order.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="295" column="60" selection-start="12662" selection-end="12662" vertical-scroll-proportion="0.46619216" vertical-offset="4163" max-vertical-offset="4725">
+            <state line="305" column="0" selection-start="12945" selection-end="12945" vertical-scroll-proportion="0.73309606" vertical-offset="4163" max-vertical-offset="4725">
               <folding />
             </state>
           </provider>
@@ -749,7 +745,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/orders/new_order.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="295" column="60" selection-start="12662" selection-end="12662" vertical-scroll-proportion="0.46619216" vertical-offset="4163" max-vertical-offset="4725">
+        <state line="305" column="0" selection-start="12945" selection-end="12945" vertical-scroll-proportion="0.73309606" vertical-offset="4163" max-vertical-offset="4725">
           <folding />
         </state>
       </provider>

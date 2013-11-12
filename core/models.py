@@ -53,3 +53,13 @@ class ProductInOrder(models.Model):
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)
     quantity = models.PositiveIntegerField()
     total_price = models.DecimalField(max_digits=6, decimal_places=2)
+    is_backorder = models.BooleanField()
+
+"""class ItemInBackorder(models.Model):
+    order_number = models.ForeignKey(Order)
+    product = models.ForeignKey(Product)
+    quantity = models.PositiveIntegerField()
+    
+    def __unicode__(self):
+        return unicode(self.order_number)"""
+

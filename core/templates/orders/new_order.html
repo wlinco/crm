@@ -69,6 +69,7 @@
                                         <li style="width:125px;">Quantity</li>
                                         <li style="width:125px;">Unit Price</li>
                                         <li style="width:115px;">Subtotal</li>
+                                        <li style="width:115px;">Backordered</li>
                                         </ul>
                                       </div>
 
@@ -81,6 +82,7 @@
                                         <li class="prod-qty">{{ field.quantity }}</li>
                                         <li class="prod-price">${{ field.unit_price }}</li>
                                         <li class="prod-total">${{ field.total_price }}</li>
+                                        <li class="prod-backorder">{{field.is_backorder }}</li>
                                         </ul>
                                       </div>
 

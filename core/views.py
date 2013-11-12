@@ -69,15 +69,26 @@ def customer(request,id):
    customer = Customer.objects.get(customer_id=id)
    customer_orders = Order.objects.filter(customer_id=id)
    total_orders = len(Order.objects.filter(customer_id=id))
+  
+   backordered_items = []
+   customer_backorders = 0
    customer_total = 0
    for orders in customer_orders:
        customer_total += orders.order_total
+       line_items = ProductInOrder.objects.filter(order_number = orders.order_number)
+       for item in line_items:
+           if item.is_backorder:
+               customer_backorders += item.quantity 
+               backordered_items.append(item)
+
 
    return render(request, 'customers/customer.html',{
        'customer': customer,
        'customer_orders': customer_orders,
        'total_orders': total_orders,
        'customer_total': customer_total,
+       'total_backorders':customer_backorders,
+       'backorder_list':backordered_items,
    })
 
 

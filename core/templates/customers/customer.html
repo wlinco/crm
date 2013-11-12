@@ -126,21 +126,25 @@
 																	<th><i class="icon-briefcase"></i>Order Number</th>
 																	<th><i class="icon-calendar"></i>Order Date</th>
 																	<th><i class="icon-question-sign"></i> Quantity</th>
+																	<th><i class="icon-usd"></i> Owed</th>
 																	<th></th>
 																	<th></th>
 																</tr>
 															</thead>
 															<tbody>
-                              {% for item in backordered_list %}
+
+                              {% for item in backorder_list %}                              
 																<tr>
-                                  <td>{{order.order_number}}</td>
-                                  <td>{{order.created_at}}</td>
-                                  <td class="hidden-phone">{{order.comments}}</td>
-                                  <td>${{order.order_total}} <span class="label label-success label-mini">Paid</span></td>
-																	<td><a class="btn mini green-stripe" href="#">View</a></td>
+                                  <td>{{item.product.name}}</td>
+                                  <td>{{item.order_number.order_number}}</td>
+                                  <td class="hidden-phone">{{item.order_number.created_at}}</td>
+                                  <td>{{item.quantity}} <span class="label label-warning label-mini">Backordered</span></td>
+                                  <td>${{item.total_price}} </span></td>
+                                <td><a class="btn mini red-stripe" href="/claim_backorder/{{item.pio_id}}">Fill</a></td>
 																	<td>&nbsp;</td>
 																</tr>
                                 {% endfor %}
+
 															</tbody>
 														</table>
 													</div>

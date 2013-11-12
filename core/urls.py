@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^orders/$', 'core.views.order_list', name='order_list'),
     url(r'^get_price/(\d{1})$', 'core.views.price_lookup', name='get_price'),
     url(r'^get_points/(\d{1})$', 'core.views.points_lookup', name='get_points'),
+    url(r'^claim_backorder/(\d{1})$', 'core.views.claim_backorder', name='claim_backorder'),
 )

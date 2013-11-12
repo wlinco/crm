@@ -150,3 +150,10 @@ def points_lookup(request,id):
     }
     return HttpResponse(simplejson.dumps(to_json), mimetype='application/json')
 
+def claim_backorder(request,id):
+    item_id = ProductInOrder.objects.get(pio_id=id)
+    item_id.is_backorder = False
+    item_id.save()
+
+    return HttpResponseRedirect('/customer/' + str(item_id.order_number.customer_id.customer_id))
+
